@@ -15,7 +15,7 @@ const routes: Routes =[
     { path: '', redirectTo: 'landing', pathMatch: 'full' },    
     { path: 'user-profile',     component: ProfileComponent },    
     { path: 'landing',          component: LandingComponent },
-    { path: 'admin/signup',     component: AdminLoginComponent },
+    { path: 'admin/login',     component: AdminLoginComponent },
     { path: 'admin',     component: AdminDashboardComponent },
     
 ];

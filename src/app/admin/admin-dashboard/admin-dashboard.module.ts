@@ -8,14 +8,26 @@ import { AdminMainComponent } from './admin-main/admin-main.component';
 import { AdminSlideBarComponent } from './admin-slide-bar/admin-slide-bar.component';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbdSortableHeader } from 'app/services/Products/sortable.directive';
+import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AdminDashboardComponent, ProductComponent, ProductListComponent, AdminLoginComponent, AdminMainComponent, AdminSlideBarComponent],
+  declarations: [
+    AdminDashboardComponent,
+     ProductComponent,
+      ProductListComponent,
+       AdminLoginComponent,
+        AdminMainComponent,
+         AdminSlideBarComponent,
+         NgbdSortableHeader
+        ],
   imports: [
     CommonModule,
     NgbPaginationModule,
     NgbAlertModule,
-    NgbModule
-  ]
+    NgbModule,
+    FormsModule
+    
+  ],
+  exports: [AdminDashboardComponent , CommonModule]  
 })
 export class AdminDashboardModule { }

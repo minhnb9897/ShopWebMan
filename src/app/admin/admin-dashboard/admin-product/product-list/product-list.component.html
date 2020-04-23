@@ -1,1 +1,39 @@
-<p>product-list works!</p>
+<form>
+  <div class="container">
+    <div class="form-group form-inline">
+        Tìm kiếm sản phẩm: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="productService.searchTerm"/>
+        <span class="ml-5" *ngIf="productService.loading$ | async">Loading...</span>        
+    </div>
+    <button type="button" class="btn btn-success " style="float: right" (click)="AddProduct()"><i class="fa fa-heart"></i>Thêm mới sản phẩm</button>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" sortable="Name" (sort)="onSort($event)">Name</th>
+        <th scope="col" sortable="Code" (sort)="onSort($event)">Code</th>
+        <th scope="col" sortable="ProductID" (sort)="onSort($event)">Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of products | async">        
+        <th scope="row">{{ product.ProductID }}</th>        
+        <td><ngb-highlight [result]="product.Name " [term]="productService.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="product.Code " [term]="productService.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="product.Price " [term]="productService.searchTerm"></ngb-highlight></td>
+      </tr>
+      </tbody>
+    </table>
+  
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+        [collectionSize]="(total$ | async)!" [(page)]="productService.page" [pageSize]="productService.pageSize" aria-label="Default pagination">
+      </ngb-pagination>
+  
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="productService.pageSize">
+        <option [ngValue]="5">5 Sản phẩm  </option>
+        <option [ngValue]="10">10 Sản phẩm</option>
+        <option [ngValue]="15">15 Sản phẩm</option>
+      </select>
+    </div>
+  </div>
+  </form>

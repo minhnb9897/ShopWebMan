@@ -1,10 +1,10 @@
-export class Product {
+export interface Product {
     ProductID: number;
       Code: string;
       Name: string;
       CategoryID: number;
       Description: string;
-      IsActive: boolean = true;
+      IsActive: boolean;
       OnHand: number;
       Price: number;
       Image: string;
