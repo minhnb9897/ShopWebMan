@@ -5,7 +5,8 @@ import { Product } from 'app/services/Products/product.model';
 import { ProductService } from 'app/services/Products/product.service';
 import { SortEvent , NgbdSortableHeader} from 'app/services/Products/sortable.directive';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { ProductComponent } from '../product/product.component';
+import { ProductAddComponent } from '../product-add/product-add.component';
+import { Category } from 'app/services/Products/category.model';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { ProductComponent } from '../product/product.component';
 })
 export class ProductListComponent {
   products : Observable<Product[]>
+  categories : Observable<Category[]>
   total$: Observable<number>
   closeResult = '';
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
@@ -27,6 +29,7 @@ export class ProductListComponent {
   ) {
     this.products = productService.products$;
     this.total$ = productService.total$;
+    this.categories = productService.categories$
    }
 
   ngOnInit(): void {
@@ -45,7 +48,7 @@ export class ProductListComponent {
   }
 
   AddProduct() {
-    this.modalService.open(ProductComponent, {size: 'lg' , centered: true}).result.then((result) => {
+    this.modalService.open(ProductAddComponent, {size: 'lg' , centered: true}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
