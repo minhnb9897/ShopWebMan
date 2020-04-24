@@ -8,7 +8,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { ExamplesModule } from './examples/examples.module';
+import { ExamplesModule } from './client/examples.module';
 import { AdminDashboardModule } from './admin/admin-dashboard/admin-dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule } from '@angular/common/http'
