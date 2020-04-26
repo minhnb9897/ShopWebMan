@@ -9,6 +9,7 @@ import { ProductAddComponent } from './admin/admin-dashboard/admin-product/produ
 import { ProductEditComponent } from './admin/admin-dashboard/admin-product/product-edit/product-edit.component';
 import { ProductDetailsComponent } from './admin/admin-dashboard/admin-product/product-details/product-details.component';
 import { ProductListComponent } from './admin/admin-dashboard/admin-product/product-list/product-list.component';
+import { AuthGuard } from './services/Auth/auth.guard';
 
 
 const routes: Routes =[
@@ -16,10 +17,10 @@ const routes: Routes =[
     { path: 'landing',          component: LandingComponent },
     //admin router
     { path: 'admin/login',     component: AdminLoginComponent , data: { title: 'Đăng nhập Hydra Admin' }},
-    { path: 'admin',     component: ProductListComponent , data: { title: 'Hydra quản lý' }},
-    { path: 'admin/create', component: ProductAddComponent , data: {title: 'Tạo mới sản phẩm'}},
-    { path: 'admin/edit/:id', component: ProductEditComponent , data: {title:'Sửa sản phẩm'}},
-    { path: 'admin/details/:id', component: ProductDetailsComponent , data: {title: 'Chi tiết sản phẩm'}}
+    { path: 'admin',     component: AdminDashboardComponent , data: { title: 'Hydra quản lý' } , canActivate: [AuthGuard]},
+    { path: 'admin/create', component: ProductAddComponent , data: {title: 'Tạo mới sản phẩm'} , canActivate: [AuthGuard]},
+    { path: 'admin/edit/:id', component: ProductEditComponent , data: {title:'Sửa sản phẩm'}, canActivate: [AuthGuard]},
+    { path: 'admin/details/:id', component: ProductDetailsComponent , data: {title: 'Chi tiết sản phẩm'}, canActivate: [AuthGuard]}
     
 ];
 

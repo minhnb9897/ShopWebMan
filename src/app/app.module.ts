@@ -11,10 +11,12 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ExamplesModule } from './client/examples.module';
 import { AdminDashboardModule } from './admin/admin-dashboard/admin-dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule } from '@angular/common/http'
+import {HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http'
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
-
+import { AuthService } from './services/Auth/auth.service';
+import { AuthGuard } from './services/Auth/auth.guard';
+import {TokenInterceptorService} from './services/Auth/token-interceptor.service'
 
 @NgModule({
   declarations: [
@@ -37,7 +39,12 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ToastrModule.forRoot(),
   ],
-  providers: [DecimalPipe],
+  providers: [DecimalPipe, AuthService, AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

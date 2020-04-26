@@ -27,7 +27,8 @@
                                   </span>
                                 </div>
 
-                                  <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                                  <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false"
+                                  [(ngModel)]="loginUserData.email" name="email" >
                               </div>
 
                               <label>Password</label>
@@ -37,9 +38,10 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                 </div>
-                                  <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input type="password" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false"
+                                  [(ngModel)]="loginUserData.password" name="password" >
                               </div>
-                              <button class="btn btn-danger btn-block btn-round">Register</button>
+                              <button class="btn btn-danger btn-block btn-round" (click)="loginUser()">Đăng nhập</button>
                           </form>
                           <div class="forgot">
                               <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
