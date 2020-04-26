@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     removeNavbar(){
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice(1);
-        if(titlee === '/admin' || titlee === '/admin/login'){
+        if(titlee === '/admin' || titlee === '/admin/login' || titlee =='/admin/create'){
             return false
         }
         else {

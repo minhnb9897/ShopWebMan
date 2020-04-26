@@ -1,1 +1,34 @@
-<p>product-details works!</p>
+<div class="example-container mat-elevation-z8">
+    <h2>Chi tiết sản phẩm</h2>
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/admin']"><mat-icon>Danh sách sản phẩm</mat-icon></a>
+    </div>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title><h2>{{product.Name}}</h2></mat-card-title>
+        <mat-card-subtitle> Tồn kho: {{product.OnHand}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <dl>
+          <dt>Code:</dt>
+          <dd>{{product.Code}}</dd>
+          <dt>Giá bán:</dt>
+          <dd>{{product.Price}}</dd>
+          <dt>Loại</dt>
+          <dd>{{product.CategoryID}}</dd>
+          <dt>Mô tả: </dt>
+          <dd>{{product.Description}}</dd>
+          <dt>Trạng thái:</dt>
+          <dd><h2>{{product.IsActive}}</h2></dd>
+        </dl>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-flat-button color="primary" [routerLink]="['/edit-product', product._id]"><mat-icon>edit</mat-icon> Sản phẩm</a>
+        <a mat-flat-button color="warn" (click)="deleteProduct(product._id)"><mat-icon>delete</mat-icon> Sản phẩm</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>

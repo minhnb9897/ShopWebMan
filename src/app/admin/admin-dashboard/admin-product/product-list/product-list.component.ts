@@ -20,6 +20,7 @@ export class ProductListComponent {
   categories : Observable<Category[]>
   total$: Observable<number>
   closeResult = '';
+  isLoadingResults = true
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   
   constructor(
@@ -33,6 +34,14 @@ export class ProductListComponent {
    }
 
   ngOnInit(): void {
+    this.productService.getProduct().subscribe((res : any) => {
+      this.products = res;
+      console.log(this.products);
+      this.isLoadingResults = false;
+    }, err => {
+      console.log(err);
+      this.isLoadingResults = false
+    });
   }
 
   onSort({column, direction}: SortEvent) {
